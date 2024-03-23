@@ -1,4 +1,8 @@
 @extends("layouts.layout")
 
 @section("content")
-<h1>Hello World</h1>
+<form action="{{ route('file.upload') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <input type="file" name="file">
+    <button type="submit">Enviar</button>
+</form>
