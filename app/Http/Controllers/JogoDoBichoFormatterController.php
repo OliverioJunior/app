@@ -7,9 +7,10 @@ class JogoDoBichoFormatterController extends Controller
     public function formatter(array $data)
     {
         $removeNullValues = new RemoveNullValuesArrayController();
-        $removeEmptyValues = new RemoveEmptyArrayController();
+        $removeEmptyValues = new RemoveLinesNotContainingEstablishmentData();
         $createClassJogoDoBicho = new CreateClassJogoDoBichoController();
         $filterNonZeroValuesSalesAndNetProfitController = new FilterNonZeroValuesSalesAndNetProfitController();
+
         $jogoDoBichoDataForDbController = new JogoDoBichoDataForDbController();
 
 

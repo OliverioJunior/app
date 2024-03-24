@@ -11,10 +11,10 @@ class JogoDoBichoDataForDbController extends Controller
             $comissao = round($estabelecimento->Vendas * 0.2, 2);
             $premio = $estabelecimento->Pgto - $comissao;
             $dbData->estabelecimento = $estabelecimento->Ponto;
-            $dbData->vendas = $estabelecimento->Vendas;
+            $dbData->vendas = (float) $estabelecimento->Vendas;
             $dbData->comissao = $comissao;
             $dbData->premio = $premio;
-            $dbData->liquido = $estabelecimento->Líquido;
+            $dbData->liquido = (float)$estabelecimento->Líquido;
 
             return $dbData;
         }, $data);

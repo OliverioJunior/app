@@ -24,7 +24,7 @@ class ExcelReaderController extends Controller
             }
             return $data;
         } catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()], 500);
+            return throw new \Exception($th->getMessage(), 500);
         }
     }
 }
