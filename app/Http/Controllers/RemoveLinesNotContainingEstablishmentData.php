@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class RemoveEmptyArrayController extends Controller
+class RemoveLinesNotContainingEstablishmentData extends Controller
 {
     public function remove(array $data)
     {
