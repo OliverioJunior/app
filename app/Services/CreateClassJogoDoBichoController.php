@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
-
-
-class CreateClassJogoDoBichoController extends Controller
+class CreateClassJogoDoBichoController
 {
-    public function create(array $data)
+    public function create(array $data): array
     {
         $keysReportJogoDoBicho = [
             "Ponto",
@@ -24,16 +22,21 @@ class CreateClassJogoDoBichoController extends Controller
             "Lucro",
             "Prejuízo",
         ];
+
         return array_map(function ($row) use ($keysReportJogoDoBicho) {
-            $obj = new \stdClass;
-            foreach ($keysReportJogoDoBicho as $index => $header) {
-                if (isset($row[$index])) {
-                    $obj->$header = $row[$index];
-                } else {
-                    $obj->$header = null;
-                }
-            }
-            return $obj;
+            return $this->createObject($row, $keysReportJogoDoBicho);
         }, $data);
+    }
+
+    private function createObject(array $row, array $keys): \stdClass
+    {
+        $object = new \stdClass;
+
+        foreach ($keys as $index => $header) {
+            $value = $row[$index] ?? null;
+            $object->$header = $value;
+        }
+
+        return $object;
     }
 }

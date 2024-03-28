@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
-class CreateClassFutebolController extends Controller
+class CreateClassFutebolController
 {
     public function create(array $data)
     {
@@ -21,15 +21,18 @@ class CreateClassFutebolController extends Controller
             "% Liq.",
         ];
         return array_map(function ($row) use ($futebolKeysReport) {
-            $obj = new \stdClass;
-            foreach ($futebolKeysReport as $index => $header) {
-                if (isset($row[$index])) {
-                    $obj->$header = $row[$index];
-                } else {
-                    $obj->$header = null;
-                }
-            }
-            return $obj;
+            return $this->createObject($row, $futebolKeysReport);
         }, $data);
+    }
+    private function createObject(array $row, array $keys): \stdClass
+    {
+        $object = new \stdClass;
+
+        foreach ($keys as $index => $header) {
+            $value = $row[$index] ?? null;
+            $object->$header = $value;
+        }
+
+        return $object;
     }
 }
