@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
-class FilterNonZeroValuesSalesAndNetProfitController extends Controller
+class FilterNonZeroValuesSalesAndNetProfitController
 {
     public function filter(array $data)
     {
+
         return array_filter($data, function ($estabelecimento) {
             if ((float) $estabelecimento->Vendas === 0.0 && (float)$estabelecimento->Líquido === 0.0) {
                 return false;

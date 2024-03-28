@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-class ExcelReaderController extends Controller
+class ExcelReaderController
 {
     public function readXlsx(String $filePath)
     {

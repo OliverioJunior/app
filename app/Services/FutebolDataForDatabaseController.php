@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
 
-class FutebolDataForDatabaseController extends Controller
+class FutebolDataForDatabaseController
 {
-    public function get(array $data)
+    public static function get(array $data)
     {
         return array_map(function ($estabelecimento) {
             $dataForDatabase = new \stdClass;
