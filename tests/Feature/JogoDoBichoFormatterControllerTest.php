@@ -2,21 +2,43 @@
 
 namespace Tests\Unit;
 
-use App\Http\Controllers\JogoDoBichoFormatterController;
+use App\Services\JogoDoBichoFormatterController;
 use PHPUnit\Framework\TestCase;
+use App\Services\RemoveNullValuesArrayController;
+use App\Services\RemoveLinesNotContainingEstablishmentData;
+use App\Services\CreateClassJogoDoBichoController;
+use App\Services\FilterNonZeroValuesSalesAndNetProfitController;
+use App\Services\JogoDoBichoDataForDbController;
 
 class JogoDoBichoFormatterControllerTest extends TestCase
 {
+
     public function test_formatter_returns_correct_data()
     {
-
-        $formatter = new JogoDoBichoFormatterController();
         $data = [
-            ["000002   - Coleta 2", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null],
-            ["000003   - Coleta 3", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null],
+            ["000002   - Coleta 2", null, null, '', "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null],
+            ["000003   - Coleta 3", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, '', "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null],
             ["010002   - JHONATAS COLINAS", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null],
             ["010020   - LOJA ARENA 1 COLINAS", null, null, null, null, null, null, "125.00", null, null, null, "125.00", null, null, null, "5.00", null, null, null, "100.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "0.00", null, null, null, "346.40", null, null, null, "472.68", null, null, null, "888049.16"],
         ];
+
+
+        $removeNullValuesController = new RemoveNullValuesArrayController();
+        $removeEmptyLinesController = new RemoveLinesNotContainingEstablishmentData();
+        $createClassJogoDoBichoController = new CreateClassJogoDoBichoController();
+        $filterNonZeroValuesSalesController = new FilterNonZeroValuesSalesAndNetProfitController();
+        $jogoDoBichoDataForDbController = new JogoDoBichoDataForDbController();
+
+
+
+        $formatter = new JogoDoBichoFormatterController(
+            $removeNullValuesController,
+            $removeEmptyLinesController,
+            $createClassJogoDoBichoController,
+            $filterNonZeroValuesSalesController,
+            $jogoDoBichoDataForDbController
+        );
+
 
 
         $formattedData = $formatter->formatter($data);

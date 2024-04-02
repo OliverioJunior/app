@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Http\Controllers\FutebolDataForDatabaseController;
+use App\Services\FutebolDataForDatabaseController;
 use PHPUnit\Framework\TestCase;
 
 class FutebolDataForDatabaseControllerTest extends TestCase

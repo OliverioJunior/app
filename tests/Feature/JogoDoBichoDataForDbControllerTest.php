@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Http\Controllers\JogoDoBichoDataForDbController;
+use App\Services\JogoDoBichoDataForDbController;
 use PHPUnit\Framework\TestCase;
 
 class JogoDoBichoDataForDbControllerTest extends TestCase

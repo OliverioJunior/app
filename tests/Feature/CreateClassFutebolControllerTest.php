@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\CreateClassFutebolController;
+use App\Services\CreateClassFutebolController;
 use Tests\TestCase;
 
 class CreateClassFutebolControllerTest extends TestCase

@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Http\Controllers\FilterNonZeroValuesSalesAndNetProfitController;
+use App\Services\FilterNonZeroValuesSalesAndNetProfitController;
 use PHPUnit\Framework\TestCase;
 
 class FilterNonZeroValuesSalesAndNetProfitControllerTest extends TestCase

@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use App\Http\Controllers\CreateClassJogoDoBichoController;
+use App\Services\CreateClassJogoDoBichoController;
 
 class CreateClassJogoDoBichoControllerTest extends TestCase
 {

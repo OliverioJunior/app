@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\Http\Controllers\RemoveNullValuesArrayController;
+use App\Services\RemoveNullValuesArrayController;
 
 class RemoveNullValuesArrayControllerTest extends TestCase
 {
@@ -11,9 +11,9 @@ class RemoveNullValuesArrayControllerTest extends TestCase
     {
 
         $data = [
-            ['a' => 1, 'b' => null, 'c' => 3],
-            ['a' => null, 'b' => 2, 'c' => null],
-            ['a' => 4, 'b' => 5, 'c' => null],
+            [1, null, 3],
+            [null, 2, null],
+            [4, 5, null],
         ];
 
 
@@ -23,9 +23,9 @@ class RemoveNullValuesArrayControllerTest extends TestCase
         $result = $controller->remove($data);
 
         $expectedResult = [
-            ['a' => 1, 'c' => 3],
-            ['b' => 2],
-            ['a' => 4, 'b' => 5],
+            [0 => 1, 2 => 3],
+            [1 => 2],
+            [4, 5],
         ];
 
         $this->assertEquals($expectedResult, $result);

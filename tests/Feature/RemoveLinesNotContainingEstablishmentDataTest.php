@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use App\Http\Controllers\RemoveLinesNotContainingEstablishmentData;
+use App\Services\RemoveLinesNotContainingEstablishmentData;
 
 class RemoveLinesNotContainingEstablishmentDataTest extends TestCase
 {
@@ -21,10 +21,9 @@ class RemoveLinesNotContainingEstablishmentDataTest extends TestCase
 
 
         $result = $controller->remove($data);
-
         $expectedResult = [
             0 => ['123456 - Value 1', 0, 0],
-            2 => ['999999 - Value 7', 0, 0],
+            1 => ['999999 - Value 7', 0, 0],
 
         ];
 
